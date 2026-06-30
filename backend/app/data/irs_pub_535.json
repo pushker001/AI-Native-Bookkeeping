@@ -1,0 +1,18 @@
+[
+    {
+      "id": "rule_meals",
+      "text": "IRS Rule on Business Meals: You can generally deduct 50% of the cost of business meals if you or an employee is present and the food or beverages are not considered lavish or extravagant. The meal must be provided to a current or potential business customer, client, consultant, or similar business contact."
+    },
+    {
+      "id": "rule_travel",
+      "text": "IRS Rule on Travel: You can deduct travel expenses paid or incurred in connection with a temporary work assignment away from home. Travel expenses must be ordinary and necessary. Commuting between your home and your main or regular place of work is NEVER deductible."
+    },
+    {
+      "id": "rule_software",
+      "text": "IRS Rule on Software and Subscriptions: You can deduct the cost of software, cloud computing, and subscriptions that are used entirely for your trade or business. These are considered ordinary and necessary office expenses."
+    },
+    {
+      "id": "rule_advertising",
+      "text": "IRS Rule on Advertising: You can deduct reasonable advertising expenses that are directly related to your business activities. This includes digital ads (Facebook, Google), business cards, and website hosting fees."
+    }
+  ]

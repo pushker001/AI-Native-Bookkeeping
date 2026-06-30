@@ -1,0 +1,8 @@
+# Root-level gitignore
+.DS_Store
+*.csv
+*.pdf
+*.db
+
+# Python scripts at root (test data generators)
+generate_*.py

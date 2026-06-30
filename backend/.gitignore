@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+
+# Virtual Environment
+venv/
+env/
+.env
+.env.*
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+crash.log
+*.log
+
+# ML Model Cache
+app/chroma_data/
+
+# Alembic
+alembic/versions/*.pyc
+
+# OS
+.DS_Store
+Thumbs.db

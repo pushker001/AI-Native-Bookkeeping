@@ -41,10 +41,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   const navigation = [
     { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-    { name: "Monthly Close", href: "#", icon: CalendarCheck },
-    { name: "Transactions", href: "#", icon: ListOrdered },
     { name: "Review Queue", href: "/dashboard/review", icon: CheckCircle2 },
-    { name: "Documents", href: "#", icon: FileText },
     { name: "Financial Statements", href: "/dashboard/reports", icon: PieChart },
   ];
 
@@ -82,14 +79,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             )
           })}
 
-          <div className="mt-8 mb-2 px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Configuration</div>
-          <Link 
-            href="#"
-            className="flex items-center gap-3 px-3 py-2 text-sm rounded-lg text-gray-400 hover:text-white hover:bg-[#111]/50 transition-colors border border-transparent"
-          >
-            <Settings className="w-4 h-4" />
-            Settings
-          </Link>
+
         </div>
 
         {/* User / Company Switcher (Bottom) */}
@@ -145,18 +135,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         {/* Top Navbar */}
         <header className="h-16 border-b border-[#222] bg-black/50 backdrop-blur-md sticky top-0 z-40 flex items-center justify-between px-8">
           
-          {/* Search */}
-          <div className="flex items-center gap-2 text-gray-500 bg-[#111] border border-[#222] rounded-lg px-3 py-1.5 w-96 focus-within:border-blue-500 focus-within:text-white transition-colors">
-            <Search className="w-4 h-4" />
-            <input 
-              type="text" 
-              placeholder="Search transactions, accounts, reports..." 
-              className="bg-transparent border-none outline-none text-sm w-full text-white placeholder-gray-600"
-            />
-            <div className="flex items-center gap-1 text-[10px] font-mono border border-[#333] rounded px-1.5 py-0.5 bg-black">
-              <span>⌘</span><span>K</span>
-            </div>
-          </div>
+          <div />
 
           {/* Right Actions */}
           <div className="flex items-center gap-4">

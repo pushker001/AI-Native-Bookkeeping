@@ -11,13 +11,23 @@ interface FlaggedTransaction {
 }
 
 const ACCOUNTS = [
-  "Software Subscriptions",
-  "Meals & Entertainment",
-  "Travel",
-  "Advertising",
-  "Office Supplies",
+  // Revenue
+  "Revenue",
+  "SaaS Subscriptions Revenue",
+  // Expenses — matching coa_initializer.py exactly
   "Payroll",
-  "Legal & Professional Services"
+  "Payroll Taxes",
+  "Software Subscriptions",
+  "Advertising",
+  "Travel",
+  "Meals & Entertainment",
+  "Rent & Office",
+  "Professional Services",
+  "Utilities & Communications",
+  "Insurance",
+  "Office Supplies",
+  "Contractor Payments",
+  "Bank Fees",
 ];
 
 export default function ReviewQueue() {

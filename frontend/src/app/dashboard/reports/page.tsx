@@ -15,6 +15,9 @@ interface PnlData {
 export default function FinancialReports() {
   const [data, setData] = useState<PnlData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [drillTransactions, setDrillTransactions] = useState<any[]>([]);
+  const [drillLoading, setDrillLoading] = useState(false);
 
   useEffect(() => {
     fetchPnl();
@@ -41,6 +44,31 @@ export default function FinancialReports() {
       console.error("Failed to fetch PNL", e);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchTransactionsByCategory = async (accountName: string) => {
+    if (selectedCategory === accountName) {
+      setSelectedCategory(null);
+      setDrillTransactions([]);
+      return;
+    }
+    setSelectedCategory(accountName);
+    setDrillLoading(true);
+    try {
+      const session = await getSession();
+      const token = (session as any)?.accessToken;
+      const res = await fetch(`${API_URL}/api/reports/transactions/${encodeURIComponent(accountName)}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const json = await res.json();
+      if (json.status === "success") {
+        setDrillTransactions(json.data);
+      }
+    } catch (e) {
+      console.error("Failed to fetch transactions", e);
+    } finally {
+      setDrillLoading(false);
     }
   };
 
@@ -163,9 +191,22 @@ export default function FinancialReports() {
                   : "0.0";
                   
                 return (
-                  <tr key={category} className="hover:bg-white/[0.02] transition-colors">
+                  <tr 
+                    key={category} 
+                    onClick={() => fetchTransactionsByCategory(category)}
+                    className={`cursor-pointer group transition-colors ${
+                      selectedCategory === category
+                        ? "bg-blue-500/10 border-l-2 border-l-blue-500"
+                        : "hover:bg-white/[0.02]"
+                    }`}
+                  >
                     <td className="py-4 px-6 text-sm text-gray-300 font-light">
-                      {category}
+                      <div className="flex items-center gap-2">
+                        {category}
+                        <span className="text-[10px] text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                          Click to expand →
+                        </span>
+                      </div>
                     </td>
                     <td className="py-4 px-6 text-sm text-right text-gray-100 font-light tabular-nums">
                       {formatCurrency(amount)}
@@ -197,6 +238,48 @@ export default function FinancialReports() {
             </tr>
           </tfoot>
         </table>
+        
+        {selectedCategory && (
+          <div className="border-t border-[#222] bg-black/30">
+            <div className="px-6 py-4 flex items-center justify-between border-b border-[#222]">
+              <h4 className="text-sm font-medium text-blue-400">
+                {selectedCategory} — {drillTransactions.length} transactions
+              </h4>
+              <button
+                onClick={() => { setSelectedCategory(null); setDrillTransactions([]); }}
+                className="text-xs text-gray-500 hover:text-white transition-colors"
+              >
+                Close ✕
+              </button>
+            </div>
+            {drillLoading ? (
+              <div className="flex justify-center py-8">
+                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500" />
+              </div>
+            ) : (
+              <table className="w-full text-left">
+                <thead>
+                  <tr className="border-b border-[#222]">
+                    <th className="py-3 px-6 text-xs text-gray-500 uppercase tracking-widest">Date</th>
+                    <th className="py-3 px-6 text-xs text-gray-500 uppercase tracking-widest">Description</th>
+                    <th className="py-3 px-6 text-xs text-gray-500 uppercase tracking-widest text-right">Amount</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#222]/50">
+                  {drillTransactions.map((txn) => (
+                    <tr key={txn.id} className="hover:bg-white/[0.01] transition-colors">
+                      <td className="py-3 px-6 text-xs text-gray-500 tabular-nums">{txn.date}</td>
+                      <td className="py-3 px-6 text-sm text-gray-300 font-light">{txn.description}</td>
+                      <td className="py-3 px-6 text-sm text-right text-gray-100 tabular-nums font-light">
+                        {formatCurrency(txn.amount)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+        )}
       </div>
 
     </div>

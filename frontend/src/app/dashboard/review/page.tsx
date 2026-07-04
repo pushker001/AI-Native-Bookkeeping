@@ -8,6 +8,7 @@ interface FlaggedTransaction {
   date: string;
   description: string;
   amount: number;
+  ambiguity_reason?: string;
 }
 
 const ACCOUNTS = [
@@ -129,7 +130,14 @@ export default function ReviewQueue() {
                     <td className="py-5 px-6">
                       <div className="flex items-center gap-3">
                         <AlertCircle className="w-4 h-4 text-orange-400/80" />
-                        <span className="text-sm text-white/90 font-light">{tx.description}</span>
+                        <div className="flex flex-col">
+                          <span className="text-sm text-white/90 font-light">{tx.description}</span>
+                          {tx.ambiguity_reason && (
+                            <span className="text-xs text-orange-400/70 mt-1 font-mono">
+                              AI: {tx.ambiguity_reason}
+                            </span>
+                          )}
+                        </div>
                       </div>
                     </td>
                     <td className="py-5 px-6 text-sm text-right text-white/90 font-light tabular-nums">

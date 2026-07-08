@@ -16,7 +16,8 @@ import {
   Bell, 
   ChevronDown,
   LogOut,
-  Building
+  Building,
+  Lock
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -44,6 +45,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     { name: "Transactions", href: "/dashboard/transactions", icon: ListOrdered },
     { name: "Review Queue", href: "/dashboard/review", icon: CheckCircle2 },
     { name: "Financial Statements", href: "/dashboard/reports", icon: PieChart },
+    { name: "Month-End Close", href: "/dashboard/close", icon: Lock },
   ];
 
   return (

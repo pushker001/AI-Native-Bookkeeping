@@ -2,6 +2,7 @@
 import { API_URL } from "@/lib/api";
 
 import { useEffect, useState } from "react";
+import { getSession } from "next-auth/react";
 import { AlertCircle, CheckCircle, ChevronDown, Check } from "lucide-react";
 interface FlaggedTransaction {
   id: number;
@@ -45,7 +46,8 @@ export default function ReviewQueue() {
 
   const fetchFlagged = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const session = await getSession();
+      const token = (session as any)?.accessToken;
       const res = await fetch(`${API_URL}/api/reports/flagged`, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -64,7 +66,8 @@ export default function ReviewQueue() {
     setResolvingId(id);
     setOpenDropdownId(null);
     try {
-      const token = localStorage.getItem("token");
+      const session = await getSession();
+      const token = (session as any)?.accessToken;
       const res = await fetch(`${API_URL}/api/reports/resolve/${id}`, {
         method: "PUT",
         headers: {

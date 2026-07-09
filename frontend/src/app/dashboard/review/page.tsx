@@ -158,8 +158,8 @@ export default function ReviewQueue() {
                           
                           {/* Custom Dropdown Menu */}
                           {openDropdownId === tx.id && (
-                            <div className="absolute right-0 mt-2 w-56 rounded-xl bg-[#1A1A1A] border border-white/10 shadow-2xl z-50 overflow-hidden backdrop-blur-xl">
-                              <div className="p-1 max-h-72 overflow-y-auto scrollbar-thin">
+                            <div className="absolute right-0 mt-2 w-56 rounded-xl bg-[#1A1A1A] border border-white/10 shadow-2xl z-50 backdrop-blur-xl max-h-72 overflow-y-auto">
+                              <div className="p-1">
                                 {ACCOUNTS.map(acc => (
                                   <button
                                     key={acc}

@@ -111,7 +111,7 @@ export default function ReviewQueue() {
             </p>
           </div>
         ) : (
-          <div className="bg-[#111111] border border-white/5 rounded-2xl overflow-hidden">
+          <div className="bg-[#111111] border border-white/5 rounded-2xl">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="border-b border-white/5 bg-white/[0.02]">

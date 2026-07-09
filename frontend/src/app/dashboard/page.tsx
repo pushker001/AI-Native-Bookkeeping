@@ -26,12 +26,21 @@ interface FlaggedTransaction {
 }
 
 const ACCOUNT_CATEGORIES = [
+  { label: "Revenue", account_name: "Revenue" },
+  { label: "Revenue (SaaS)", account_name: "SaaS Subscriptions Revenue" },
+  { label: "Payroll", account_name: "Payroll" },
+  { label: "Payroll Taxes", account_name: "Payroll Taxes" },
+  { label: "Software Subscriptions", account_name: "Software Subscriptions" },
   { label: "Advertising", account_name: "Advertising" },
-  { label: "Software & Hosting", account_name: "Software Subscriptions" },
   { label: "Travel", account_name: "Travel" },
   { label: "Meals & Entertainment", account_name: "Meals & Entertainment" },
-  { label: "Payroll", account_name: "Payroll" },
-  { label: "Revenue (SaaS)", account_name: "SaaS Subscriptions" },
+  { label: "Rent & Office", account_name: "Rent & Office" },
+  { label: "Professional Services", account_name: "Professional Services" },
+  { label: "Utilities & Communications", account_name: "Utilities & Communications" },
+  { label: "Insurance", account_name: "Insurance" },
+  { label: "Office Supplies", account_name: "Office Supplies" },
+  { label: "Contractor Payments", account_name: "Contractor Payments" },
+  { label: "Bank Fees", account_name: "Bank Fees" },
 ];
 
 export default function Dashboard() {
